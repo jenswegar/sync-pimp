@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    build: api
+    ports:
+      - "8888:3000"
+    networks: 
+      - syncpimp
+    volumes:
+      - "./client/src/src/:/app/src"
+      - "/Volumes/CodeProjectsSampleData/fi.wegar.sync-pimp/qsync:/app/data/qsync:ro"
+  
+  client:
+    build: client
+    ports:
+      - "80:3000"
+    networks: 
+      - syncpimp
+    depends_on: 
+      - api
+    volumes:
+      - "./client/src/src/:/app/src"
+
+networks: 
+  syncpimp:
