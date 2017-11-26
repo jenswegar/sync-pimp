@@ -8,10 +8,11 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install app dependencies
-COPY ./src/package.json /app
+COPY ./client/package.json /app
 RUN npm install
 
 # Bundle app source
-COPY ./src/. /app
+COPY ./client/. /app
+COPY ./lib/. /app/src/.
 
 CMD [ "npm", "start" ]
